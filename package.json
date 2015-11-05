@@ -4,6 +4,7 @@
   "description": "Simple demo for d16 day",
   "main": "index.js",
   "scripts": {
+    "start": "webpack && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Johannes Auer, Konrad Kühne",
@@ -11,6 +12,7 @@
   "dependencies": {
     "express": "^4.13.3",
     "immutable": "^3.7.5",
+    "pg": "^4.4.3",
     "react": "^0.13.3",
     "redis": "^2.3.0",
     "socket.io": "^1.3.7"

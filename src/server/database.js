@@ -1,8 +1,18 @@
 var redis = require("redis")
+var REDIS_URL = process.env.REDIS_URL
 var REDIS_HOST = process.env.REDIS_PORT_6379_TCP_ADDR || "127.0.0.1"
 var REDIS_PORT = process.env.REDIS_PORT_6379_TCP_PORT || "6379"
 
-var client = redis.createClient(parseInt(REDIS_PORT), REDIS_HOST)
+function createRedisClient() {
+ 
+  if(REDIS_URL) {
+    return redis.createClient(REDIS_URL)
+  } else {
+    return redis.createClient(parseInt(REDIS_PORT), REDIS_HOST)
+  }
+}
+
+var client = createRedisClient()
 
 function getMessages(callback) {
   client.lrange("messages", 0, -1, onReply)

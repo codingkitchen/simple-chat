@@ -82,4 +82,3 @@ React.render(
   React.createElement(simpleChat, data),
   document.getElementById("app")
 )
-
