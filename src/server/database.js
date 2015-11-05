@@ -39,7 +39,7 @@ function storeMessage(msg, callback) {
 function init() {
   client.on("connect", onRedisConnect)
   client.del("messages", onDelete)
-  client.rpush(["messages", "Hallo Dezernat16"], onReply)
+  client.rpush(["messages", '{"name": "LivelyCode", "text": "Hallo Dezernat16!"}'], onReply)
 
   function onReply(err, reply) {
     console.log("Initial commit:", reply)

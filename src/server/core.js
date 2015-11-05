@@ -37,13 +37,15 @@ function startServer(port, staticPath) {
         if(err) {
           socket.emit("messages", err)
         } else {
-          socket.emit("messages", reply)
+          var parsed = JSON.parse("[" + reply +"]")
+          socket.emit("messages", parsed)
         }
       }
     }
 
     function onSocketAdd(msg) {
-      db.storeMessage(msg, onMsgStored)
+      var stringified = JSON.stringify(msg)
+      db.storeMessage(stringified, onMsgStored)
       
       function onMsgStored(err, reply) {
         if(err) {

@@ -8,14 +8,13 @@ module.exports = {
   ],
   output: {
     path: __dirname + "/dist",
-    publicPath: "/",
     filename: "bundle.js"
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js?$/,
       exclude: /node_modules/,
-      loader: "react-hot!babel"
+      loader: 'react-hot!babel'
     }]
   },
   resolve: {
@@ -28,4 +27,4 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};
