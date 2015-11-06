@@ -4,7 +4,7 @@ var REDIS_HOST = process.env.REDIS_PORT_6379_TCP_ADDR || "127.0.0.1"
 var REDIS_PORT = process.env.REDIS_PORT_6379_TCP_PORT || "6379"
 
 function createRedisClient() {
- 
+
   if(REDIS_URL) {
     return redis.createClient(REDIS_URL)
   } else {
@@ -27,7 +27,7 @@ function getMessages(callback) {
 
 function storeMessage(msg, callback) {
   client.rpush(["messages", msg], onReply)
-  
+
   function onReply(err, reply) {
     if(err) {
       return callback(err)
@@ -44,21 +44,26 @@ function init() {
   function onReply(err, reply) {
     console.log("Initial commit:", reply)
   }
-  
+
   function onDelete(err, reply) {
     console.log("Initial delete:", reply)
   }
- 
-  
+
+
 }
 
+
 function onRedisConnect() {
-  console.log("Redis channel opend to ", REDIS_HOST, "on port" , REDIS_PORT)
+  if(REDIS_URL) {
+    console.log("Redis channel opened on to HEROKU REDIS ", REDIS_URL)
+  } else {
+    console.log("Redis channel opened to local ", REDIS_HOST, "on port" , REDIS_PORT)
+  }
 }
 
 
 module.exports = {
   init: init,
   storeMessage: storeMessage,
-  getMessages, getMessages
+  getMessages: getMessages
 }
