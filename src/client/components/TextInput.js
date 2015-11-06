@@ -14,11 +14,14 @@ export default React.createClass({
     this.setState({inputText: ""})
   },
   onTextChange: function(e) {
+    e.stopPropagation()
+    e.preventDefault()
     this.setState({inputText: e.target.value})
   },
-  handleKeyDown: function(event) {
-    event.stopPropagation()
-    if(event.which === 13 || event.keyCode === 13) {
+  handleKeyDown: function(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    if(e.which === 13 || e.keyCode === 13) {
       return this.onSendClick()
     }
     return true

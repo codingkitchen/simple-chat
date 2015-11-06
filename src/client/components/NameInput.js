@@ -9,14 +9,17 @@ export default React.createClass({
     this.props.setUser(name)
     this.setState({nameText: ""})
   },
-  handleKeyDown: function(event) {
-    event.stopPropagation()
-    if(event.which === 13 || event.keyCode === 13) {
+  handleKeyDown: function(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    if(e.which === 13 || e.keyCode === 13) {
       return this.onSetClick()
     }
     return true
   },
   onTextChange: function(e) {
+    e.stopPropagation()
+    e.preventDefault()
     this.setState({nameText: e.target.value})
   },
   render: function() {
