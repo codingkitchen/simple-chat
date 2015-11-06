@@ -15,9 +15,9 @@ export default React.createClass({
   },
   onTextChange: function(e) {
     this.setState({inputText: e.target.value})
-    console.log(React.keyCode);
   },
   handleKeyDown: function(event) {
+    event.stopPropagation()
     if(event.which === 13 || event.keyCode === 13) {
       return this.onSendClick()
     }
