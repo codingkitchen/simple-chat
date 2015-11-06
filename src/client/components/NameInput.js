@@ -9,6 +9,12 @@ export default React.createClass({
     this.props.setUser(name)
     this.setState({nameText: ""})
   },
+  handleKeyDown: function(event) {
+    if(event.which === 13 || event.keyCode === 13) {
+      return this.onSetClick()
+    }
+    return true
+  },
   onTextChange: function(e) {
     this.setState({nameText: e.target.value})
   },
@@ -16,6 +22,7 @@ export default React.createClass({
     var inputElement =  React.DOM.input({
       placeholder: "Wie heißt Du?",
       value: this.state.nameText,
+      onKeyDown: this.handleKeyDown,
       onChange: this.onTextChange
     })
     var sendBtn = React.DOM.button(

@@ -1,8 +1,11 @@
+"use strict"; 
 import React from "react"
 import io from "socket.io-client"
 import {fromJS} from "immutable"
 import TextInput from "./TextInput"
 import MessagesList from "./MessagesList"
+
+
 
 export default React.createClass({
   handleNewMsg: function(msg) {
@@ -18,7 +21,7 @@ export default React.createClass({
     const socket = io("localhost:8090")
     var props = this.props.data
     this.setProps({data: props.setIn(["socket"], socket)})
-    
+
     socket.on("messages", this.handleIncomingMessages)
     socket.emit("messages", {})
     socket.on("add", this.handleNewMsg)

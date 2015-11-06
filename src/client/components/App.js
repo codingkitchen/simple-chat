@@ -6,7 +6,7 @@ import NameInput from "./NameInput"
 import MessagesList from "./MessagesList"
 
 export default React.createClass({
-  handleNewMsg: function(msg) {
+    handleNewMsg: function(msg) {
     var props = this.props.data
     this.setProps(
       {data: props.updateIn(["messages"],
@@ -25,9 +25,9 @@ export default React.createClass({
   },
   setUser: function(name) {
     var props = this.props.data
-    this.setProps({data: props.setIn(["name"], name)})   
+    this.setProps({data: props.setIn(["name"], name)})
   },
-  handleIncomingMessages: function(data)  {
+  handleIncomingMessages: function  (data)  {
     var props = this.props.data
     this.setProps({data: props.setIn(["messages"], fromJS(data))})
   },
