@@ -14,17 +14,13 @@ export default React.createClass({
     this.setState({inputText: ""})
   },
   onTextChange: function(e) {
-    e.stopPropagation()
-    e.preventDefault()
     this.setState({inputText: e.target.value})
   },
   handleKeyDown: function(e) {
-    e.stopPropagation()
     e.preventDefault()
     if(e.which === 13 || e.keyCode === 13) {
-      return this.onSendClick()
+      this.onSendClick()
     }
-    return true
   },
   render: function() {
     var inputElement =  React.DOM.input({
