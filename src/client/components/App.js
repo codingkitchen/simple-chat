@@ -53,9 +53,18 @@ export default React.createClass({
       return React.createElement(TextInput, {data: this.props.data})
     }
   },
+  createUsernameElement: function() {
+    var username = this.props.data.getIn(["name"])
+    if(username === "") {
+      return React.DOM.small(null, "Du hast noch keinen Namen gewählt!")
+    } else {
+      return React.DOM.small(null, "Hallo " + username + "!" )
+    }
+  },
   render: function() {
     var messagesList = React.createElement(MessagesList, {messages: this.props.data.get("messages")})
-    var textinput = this.createInputElement();
-    return React.DOM.div(null,  messagesList, textinput)
+    var textinput = this.createInputElement()
+    var usernameElement = this.createUsernameElement()
+    return React.DOM.div(null, usernameElement, messagesList, textinput)
   }
 });
