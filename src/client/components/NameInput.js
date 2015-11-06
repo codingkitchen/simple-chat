@@ -10,16 +10,12 @@ export default React.createClass({
     this.setState({nameText: ""})
   },
   handleKeyDown: function(e) {
-    e.stopPropagation()
     e.preventDefault()
     if(e.which === 13 || e.keyCode === 13) {
-      return this.onSetClick()
+      this.onSetClick()
     }
-    return true
   },
   onTextChange: function(e) {
-    e.stopPropagation()
-    e.preventDefault()
     this.setState({nameText: e.target.value})
   },
   render: function() {
