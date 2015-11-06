@@ -17,7 +17,6 @@ export default React.createClass({
     this.setState({inputText: e.target.value})
   },
   handleKeyDown: function(e) {
-    e.preventDefault()
     if(e.which === 13 || e.keyCode === 13) {
       this.onSendClick()
     }

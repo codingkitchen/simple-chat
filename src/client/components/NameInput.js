@@ -10,7 +10,6 @@ export default React.createClass({
     this.setState({nameText: ""})
   },
   handleKeyDown: function(e) {
-    e.preventDefault()
     if(e.which === 13 || e.keyCode === 13) {
       this.onSetClick()
     }
