@@ -15,8 +15,18 @@ export default React.createClass({
                             })
       })
   },
+  createSocketUrl: function() {
+    var currentLocation = window.location
+    if(currentLocation.hostname === "localhost") {
+      return "localhost:8090"
+    } else {
+      return currentLocation.href
+    }
+  },
   loadMessages: function() {
-    const socket = io("localhost:8090")
+    var location = this.createSocketUrl()
+    const socket = io(location)
+    console.log("Connecting to:", location)
     var props = this.props.data
     this.setProps({data: props.setIn(["socket"], socket)})
     socket.on("messages", this.handleIncomingMessages)
