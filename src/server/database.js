@@ -3,6 +3,11 @@ var REDIS_URL = process.env.REDIS_URL
 var REDIS_HOST = process.env.REDIS_PORT_6379_TCP_ADDR || "127.0.0.1"
 var REDIS_PORT = process.env.REDIS_PORT_6379_TCP_PORT || "6379"
 
+
+/*
+ * Connects to Redis server
+ * depending on host system
+ */
 function createRedisClient() {
 
   if(REDIS_URL) {
@@ -14,6 +19,11 @@ function createRedisClient() {
 
 var client = createRedisClient()
 
+/*
+ * Retrieves messages from Redis database
+ * @param callback callback-fn is retrieve succeeds
+ * @return callback applied to reply from database
+ */
 function getMessages(callback) {
   client.lrange("messages", 0, -1, onReply)
 
@@ -25,6 +35,12 @@ function getMessages(callback) {
   }
 }
 
+/*
+ * Stores message in Redis database
+ * @param msg: Message to be stored
+ * @param callback: callback applied to database reply
+ * @return: callback return
+ */
 function storeMessage(msg, callback) {
   client.rpush(["messages", msg], onReply)
 
@@ -36,6 +52,9 @@ function storeMessage(msg, callback) {
   }
 }
 
+/*
+ * Initializes Redis database
+ */
 function init() {
   client.on("connect", onRedisConnect)
   client.del("messages", onDelete)
@@ -52,7 +71,9 @@ function init() {
 
 }
 
-
+/*
+ * Displays Redis connecting info
+ */
 function onRedisConnect() {
   if(REDIS_URL) {
     console.log("Redis channel opened on to HEROKU REDIS ", REDIS_URL)
