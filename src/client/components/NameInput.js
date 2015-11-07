@@ -22,7 +22,9 @@ export default React.createClass({
       placeholder: "Wie heißt Du?",
       value: this.state.nameText,
       onKeyDown: this.handleKeyDown,
-      onChange: this.onTextChange
+      onChange: this.onTextChange,
+      id: "name-input",
+      className: "inputfield"
     })
     var sendBtn = React.DOM.button(
       {

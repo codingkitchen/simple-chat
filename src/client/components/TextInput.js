@@ -26,7 +26,9 @@ export default React.createClass({
       placeholder: "Schreibe eine Nachricht",
       value: this.state.inputText,
       onKeyDown: this.handleKeyDown,
-      onChange: this.onTextChange
+      onChange: this.onTextChange,
+      id: "text-input",
+      className: "inputfield"
     })
     var sendBtn = React.DOM.button(
       {

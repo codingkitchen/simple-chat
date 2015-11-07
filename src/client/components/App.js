@@ -9,11 +9,14 @@ export default React.createClass({
     handleNewMsg: function(msg) {
     var props = this.props.data
     this.setProps(
-      {data: props.updateIn(["messages"],
-                         function(oldVal) {
-                           return oldVal.push(fromJS(msg))
-                            })
-      })
+      {data: props.updateIn(
+        ["messages"],
+         function(oldVal) {
+            return oldVal.push(fromJS(msg))
+           }
+         )
+      }
+    )
   },
   createSocketUrl: function() {
     var currentLocation = window.location
@@ -56,9 +59,9 @@ export default React.createClass({
   createUsernameElement: function() {
     var username = this.props.data.getIn(["name"])
     if(username === "") {
-      return React.DOM.small(null, "Du hast noch keinen Namen gewählt!")
+      return React.DOM.p({id: "subtitle"}, "Du hast noch keinen Namen gewählt!")
     } else {
-      return React.DOM.small(null, "Hallo " + username + "!" )
+      return React.DOM.p({id: "subtitle"}, "Hallo " + username + "!" )
     }
   },
   render: function() {

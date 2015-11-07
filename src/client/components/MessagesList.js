@@ -2,14 +2,15 @@ import React from "react"
 
 export default React.createClass({
   render: function() {
-    var messages = this.props.messages
+    var messages = this.props.messages.reverse()
     var msgElements = messages.map(createListElement)
 
     function createListElement(msg) {
-
-      return React.DOM.li({className: "msg-element"}, msg.get("name")+ " : " + msg.get("text"))
+      var nameElement = React.DOM.small({className: "msg-name"}, msg.get("name"))
+      var textElement = React.DOM.p({className: "msg-text"}, nameElement, " : " + msg.get("text"))
+      return React.DOM.li({className: "msg"}, textElement)
     }
 
-    return React.DOM.ol({className: "msg-list"}, msgElements)
+    return React.DOM.ol({id: "msg-list"}, msgElements)
   }
 })
